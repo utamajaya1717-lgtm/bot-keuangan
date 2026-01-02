@@ -24,7 +24,8 @@ if not TOKEN:
 sheet = None
 if SHEET_ID and CREDS_BASE64:
     try:
-        creds_json = json.loads(base64.b64decode(CREDS_BASE64).decode('utf-8'))
+        creds_json_str = base64.b64decode(CREDS_BASE64 + "===").decode('utf-8')
+        creds_json = json.loads(creds_json_str)
         creds = Credentials.from_service_account_info(
             creds_json, 
             scopes=['https://www.googleapis.com/auth/spreadsheets']
